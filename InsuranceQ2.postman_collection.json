@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "583e6d95-07b2-46dc-bbd9-e7270b23e250",
+		"name": "InsuranceQ2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Occupation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/occupation",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"occupation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PremiumCalculation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/premiumcalculation?age=34&occupationId=1&coverAmount=1231234",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"premiumcalculation"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "34"
+						},
+						{
+							"key": "occupationId",
+							"value": "1"
+						},
+						{
+							"key": "coverAmount",
+							"value": "1231234"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "https://localhost:7185",
+			"type": "default"
+		}
+	]
+}
