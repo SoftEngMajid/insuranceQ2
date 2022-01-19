@@ -1,29 +1,57 @@
 
-<form>
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input id="name" class="form-control" [(ngModel)]="name" placeholder="Adam" name="name" />
+<form [formGroup]="premiumForm" class="form-group">
+
+  <label for="name">Name</label>
+  <input id="name" type="text" formControlName="name" />
+  <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert">
+    <div *ngIf="name?.hasError('required')">
+      Required field.
+    </div>
   </div>
-  <div class="form-group">
-    <label for="age">Age</label>
-    <input id="age" class="form-control" [(ngModel)]="age" placeholder="32" name="age" (change)="onChange()" />
+
+  <label for="age">Age</label>
+  <input id="age" type="text" formControlName="age" (change)="onChange()"/>
+  <div *ngIf="age?.invalid && (age?.dirty || age?.touched)" class="alert">
+
+    <div *ngIf="age?.hasError('required')">
+      Age is required.
+    </div>
+    <div *ngIf="age?.hasError('invalidInteger')">
+      Age must be a positive integer.
+    </div>
+
   </div>
-  <div class="form-group">
-    <label for="dob">Date of Birth</label>
-    <input id="dob" class="form-control" [(ngModel)]="dob" placeholder="DD/MM/YYYY" name="dob" />
+
+  <label for="dob">Date of Birth</label>
+  <input id="dob" type="text" formControlName="dob" placeholder="DD/MM/YYYY" />
+  <div *ngIf="dob?.invalid && (dob?.dirty || dob?.touched)" class="alert">
+    <div *ngIf="dob?.hasError('required')">
+      Required field.
+    </div>
+    <div *ngIf="dob?.hasError('invalidDate')">
+      Invalid Date.
+    </div>
   </div>
-  <div class="form-group">
-    <label for="occupation">Occupation</label>
-    <select id="occupation" class="form-control" [(ngModel)]="occupationId" name="occupation" (change)="onChange()">
-      <option *ngFor="let occupation of occupations" [ngValue]="occupation.id">{{ occupation.name }}</option>
-    </select>
+
+  <label for="occupation">Occupation</label>
+  <select id="occupation" formControlName="occupation" (change)="onChange()">
+    <option *ngFor="let occupation of occupations" [ngValue]="occupation.id">{{ occupation.name }}</option>
+  </select>
+  <div *ngIf="occupation?.invalid && (occupation?.dirty || occupation?.touched)" class="alert">
+    <div *ngIf="occupation?.hasError('required')">
+      Required field.
+    </div>
   </div>
-  <div class="form-group">
-    <label for="cover">Cover Amount</label>
-    <input id="cover" class="form-control" [(ngModel)]="cover" name="cover" (change)="onChange()" />
+
+  <label for="cover">Cover Amount</label>
+  <input id="cover" type="text" formControlName="cover" (change)="onChange()"/>
+  <div *ngIf="cover?.invalid && (cover?.dirty || cover?.touched)" class="alert">
+    <div *ngIf="cover?.hasError('required')">
+      Required field.
+    </div>
   </div>
-  <div class="form-group">
-    <label for="premium">Premium Amount</label>
-    <input id="premium" class="form-control" [(ngModel)]="premium" name="premium" readonly />
-  </div>
+
+  <label for="premium">Premium Amount</label>
+  <input id="premium" type="text" formControlName="premium" readonly />
+
 </form>
